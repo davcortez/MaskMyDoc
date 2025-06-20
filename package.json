@@ -1,0 +1,29 @@
+{
+    "name": "MaskMyDoc",
+    "version": "1.0.0",
+    "description": "Document obfuscation web application",
+    "main": "src/main.js",
+    "type": "module",
+    "scripts": {
+      "test": "jest",
+      "serve": "python3 -m http.server 8000",
+      "dev": "python3 -m http.server 8000 --bind 127.0.0.1"
+    },
+    "keywords": [
+      "document",
+      "obfuscation",
+      "privacy",
+      "canvas",
+      "image-processing"
+    ],
+    "author": "@davcortez",
+    "license": "MIT",
+    "devDependencies": {
+      "jest": "^29.0.0",
+      "@jest/environment-jsdom": "^29.0.0"
+    },
+    "jest": {
+      "testEnvironment": "jsdom",
+      "setupFilesAfterEnv": ["<rootDir>/tests/setup.js"]
+    }
+  } 
