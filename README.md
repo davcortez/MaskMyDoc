@@ -10,7 +10,6 @@ Una aplicación web simple y segura para ocultar información sensible en docume
 - **Privacidad total**: Tus documentos nunca salen de tu dispositivo
 
 ### 🎨 **Herramientas de Obfuscación**
-- **Difuminar**: Aplica efecto de desenfoque a áreas sensibles
 - **Pixelar**: Crea efecto pixelado para ocultar información
 - **Tachar**: Cubre áreas con color negro sólido
 

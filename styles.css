@@ -1,0 +1,328 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+h1 {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+    padding: 30px;
+    margin: 0;
+    font-size: 2.5em;
+    font-weight: 700;
+}
+
+.container > p {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-size: 1.1em;
+}
+
+.upload-section {
+    text-align: center;
+    padding: 40px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+}
+
+.upload-section.drag-over {
+    background: #f0f8ff;
+    border: 2px dashed #667eea;
+    border-radius: 8px;
+}
+
+.file-input {
+    display: none;
+}
+
+.upload-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: none;
+}
+
+.upload-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.file-info {
+    margin-top: 15px;
+}
+
+.file-info small {
+    display: block;
+    color: #666;
+    font-size: 0.9em;
+    transition: color 0.3s ease;
+}
+
+/* File validation status styles */
+.file-status.default {
+    color: #666;
+}
+
+.file-status.loading {
+    color: #667eea;
+    font-weight: 600;
+}
+
+.file-status.success {
+    color: #27ae60;
+    font-weight: 600;
+}
+
+.file-status.error {
+    color: #e74c3c;
+    font-weight: 600;
+}
+
+.file-status.loading::before {
+    content: "⏳ ";
+}
+
+.file-status.success::before {
+    content: "✅ ";
+}
+
+.file-status.error::before {
+    content: "❌ ";
+}
+
+.canvas-section {
+    padding: 30px;
+    text-align: center;
+}
+
+#canvas {
+    max-width: 100%;
+    max-height: 600px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    cursor: crosshair;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.control-group label {
+    font-weight: 600;
+    color: #333;
+}
+
+select {
+    padding: 8px 12px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    background: white;
+}
+
+select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+}
+
+#clearObfuscation {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+}
+
+#clearObfuscation:hover {
+    box-shadow: 0 3px 10px rgba(255, 107, 107, 0.3);
+}
+
+.instructions {
+    padding: 30px;
+    background: #f8f9fa;
+    border-top: 1px solid #eee;
+}
+
+.instructions h3 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+.instructions ol {
+    margin-left: 20px;
+    color: #666;
+    line-height: 1.6;
+}
+
+.instructions li {
+    margin-bottom: 8px;
+}
+
+.security-info {
+    margin-top: 25px;
+    padding: 20px;
+    background: #e8f5e8;
+    border-radius: 8px;
+    border-left: 4px solid #27ae60;
+}
+
+.security-info h4 {
+    color: #27ae60;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.security-info ul {
+    margin-left: 20px;
+    color: #2c3e50;
+    line-height: 1.5;
+}
+
+.security-info li {
+    margin-bottom: 6px;
+    font-size: 0.95em;
+}
+
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #667eea;
+}
+
+/* Drag and drop enhancements */
+.upload-section {
+    border: 2px dashed transparent;
+    transition: all 0.3s ease;
+}
+
+.upload-section:hover {
+    border-color: #667eea;
+    background: #f8f9ff;
+}
+
+.upload-section.drag-over {
+    border-color: #667eea;
+    background: #f0f8ff;
+    transform: scale(1.02);
+}
+
+/* Loading animation for file validation */
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.file-status.loading {
+    animation: pulse 1.5s infinite;
+}
+
+/* Accessibility improvements */
+.upload-btn:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
+button:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
+select:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
+/* Enhanced responsive design */
+@media (max-width: 768px) {
+    .container {
+        margin: 10px;
+        border-radius: 8px;
+    }
+    
+    h1 {
+        font-size: 2em;
+        padding: 20px;
+    }
+    
+    .controls {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .control-group {
+        flex-direction: column;
+        text-align: center;
+        gap: 5px;
+    }
+    
+    .security-info {
+        padding: 15px;
+    }
+    
+    .security-info h4 {
+        font-size: 1em;
+    }
+    
+    .file-info small {
+        font-size: 0.8em;
+    }
+} 
