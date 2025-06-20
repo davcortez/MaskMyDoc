@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obfuscador de Pasaportes - DNI Ecuador</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Obfuscador de Pasaportes</h1>
+        <p>Sube una imagen de pasaporte, oculta datos sensibles y descarga la imagen procesada</p>
+        
+        <div class="upload-section">
+            <input type="file" id="imageInput" accept="image/*" class="file-input">
+            <label for="imageInput" class="upload-btn">Seleccionar Imagen</label>
+        </div>
+
+        <div class="canvas-section" id="canvasSection" style="display: none;">
+            <canvas id="canvas"></canvas>
+            <div class="controls">
+                <div class="control-group">
+                    <label>Herramienta de Ocultación:</label>
+                    <select id="obfuscationTool">
+                        <option value="blur">Difuminar</option>
+                        <option value="pixelate">Pixelar</option>
+                        <option value="blackout">Tachar</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label>
+                        <input type="checkbox" id="addWatermark" checked>
+                        Agregar marca de agua "datosecuatorianos"
+                    </label>
+                </div>
+                <div class="control-group">
+                    <button id="clearObfuscation">Limpiar Ocultación</button>
+                    <button id="downloadBtn">Descargar Imagen</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h3>Instrucciones:</h3>
+            <ol>
+                <li>Sube una imagen de pasaporte usando el botón "Seleccionar Imagen"</li>
+                <li>Elige una herramienta de ocultación (Difuminar, Pixelar o Tachar)</li>
+                <li>Haz clic y arrastra sobre la imagen para ocultar áreas sensibles</li>
+                <li>La marca de agua "datosecuatorianos" se agregará automáticamente</li>
+                <li>Haz clic en "Descargar Imagen" para guardar la imagen procesada</li>
+            </ol>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
