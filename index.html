@@ -3,17 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Obfuscador de Documentos de identificación</title>
+    <title>Obfuscador de Documentos - DNI Ecuador</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Obfuscador de Documentos de identificación</h1>
+        <h1>Obfuscador de Documentos</h1>
         <p>Sube una imagen de pasaporte, oculta datos sensibles y descarga la imagen procesada</p>
         
         <div class="upload-section">
-            <input type="file" id="imageInput" accept="image/*" class="file-input">
+            <input type="file" 
+                   id="imageInput" 
+                   accept=".jpg,.jpeg,.png,.webp,.gif,image/jpeg,image/png,image/webp,image/gif" 
+                   class="file-input"
+                   title="Seleccione archivos JPG, PNG, WebP o GIF (máximo 50MB)">
             <label for="imageInput" class="upload-btn">Seleccionar Imagen</label>
+            <div class="file-info">
+                <small>Formatos aceptados: JPG, PNG, WebP, GIF (máximo 50MB)</small>
+            </div>
         </div>
 
         <div class="canvas-section" id="canvasSection" style="display: none;">
@@ -22,14 +29,13 @@
                 <div class="control-group">
                     <label>Herramienta de Ocultación:</label>
                     <select id="obfuscationTool">
-                        <option value="blur">Difuminar</option>
                         <option value="pixelate">Pixelar</option>
                         <option value="blackout">Tachar</option>
                     </select>
                 </div>
                 <div class="control-group">
                     <label>
-                        <input type="checkbox" id="addWatermark" checked>
+                        <input type="checkbox" id="addWatermark">
                         Agregar marca de agua "datosecuatorianos"
                     </label>
                 </div>
@@ -44,14 +50,24 @@
             <h3>Instrucciones:</h3>
             <ol>
                 <li>Sube una imagen de pasaporte usando el botón "Seleccionar Imagen"</li>
-                <li>Elige una herramienta de ocultación (Difuminar, Pixelar o Tachar)</li>
+                <li>Elige una herramienta de ocultación (Pixelar o Tachar)</li>
                 <li>Haz clic y arrastra sobre la imagen para ocultar áreas sensibles</li>
-                <li>La marca de agua "datosecuatorianos" se agregará automáticamente</li>
+                <li>Opcionalmente, marca la casilla para agregar la marca de agua "datosecuatorianos"</li>
                 <li>Haz clic en "Descargar Imagen" para guardar la imagen procesada</li>
             </ol>
+            
+            <div class="security-info">
+                <h4>🔒 Seguridad y Privacidad:</h4>
+                <ul>
+                    <li>Todas las imágenes se procesan localmente en tu navegador</li>
+                    <li>No se suben archivos a ningún servidor</li>
+                    <li>Tus documentos nunca salen de tu dispositivo</li>
+                    <li>Validación automática de tipo y tamaño de archivo</li>
+                </ul>
+            </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script type="module" src="src/main.js"></script>
 </body>
 </html> 
