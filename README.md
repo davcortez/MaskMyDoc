@@ -1,164 +1,188 @@
-# 🛂 MaskMyDoc
+# MaskMyDoc - Document Obfuscation Tool
 
-Una aplicación web simple y segura para ocultar información sensible en documentos de identificación, con marca de agua automática "DATOSECUATORIANOS" y procesamiento completamente local.
+A modern, modular web application for obfuscating sensitive information in identification documents.
 
-## ✨ Características
+## 🏗️ Architecture
 
-### 🔒 **Privacidad y Seguridad**
-- **Procesamiento local**: Todas las imágenes se procesan en el navegador
-- **Sin servidor**: No se suben archivos a ningún servidor
-- **Privacidad total**: Tus documentos nunca salen de tu dispositivo
+The application follows a modular ES6 architecture with clear separation of concerns
 
-### 🎨 **Herramientas de Obfuscación**
-- **Pixelar**: Crea efecto pixelado para ocultar información
-- **Tachar**: Cubre áreas con color negro sólido
-
-### 🏷️ **Marca de Agua Inteligente**
-- **Cobertura completa**: Patrón de marca de agua en toda la imagen
-- **Texto personalizado**: "DATOSECUATORIANOS" automático
-- **Múltiples capas**: Sistema de 3 capas con diferentes tamaños y ángulos
-- **Opcional**: Se puede activar/desactivar según necesidad
-
-### 📱 **Compatibilidad**
-- **Responsive**: Funciona en desktop y móvil
-- **Touch Support**: Soporte para dispositivos táctiles
-- **Cross-browser**: Compatible con navegadores modernos
-
-## 🚀 Uso
-
-### 1. **Subir Imagen**
-- Haz clic en "Seleccionar Imagen"
-- Elige un archivo de imagen de pasaporte
-- La imagen se convertirá automáticamente a escala de grises
-
-### 2. **Ocultar Información**
-- Selecciona una herramienta de obfuscación
-- Haz clic y arrastra sobre las áreas que deseas ocultar
-- Repite para múltiples áreas sensibles
-
-### 3. **Descargar**
-- La marca de agua se aplica automáticamente
-- Haz clic en "Descargar Imagen"
-- Se guardará como archivo PNG
-
-## 📁 Estructura del Proyecto
+### 📁 Project Structure
 
 ```
-obfuscator-dni/
-├── index.html          # Interfaz principal
-├── styles.css          # Estilos y diseño
-├── script.js           # Lógica de la aplicación
-├── README.md           # Este archivo
-└── LICENSE             # Licencia MIT
+MaskMyDoc/
+├── 📄 index.html              # Main application interface
+├── 🎨 styles.css              # Application styling
+├── 📦 package.json            # Dependencies and scripts
+├── 🔒 LICENSE                 # MIT License
+├── 📚 README.md               # This documentation
+├── 🔧 .gitignore              # Git ignore rules
+├── 📁 src/                    # Source code (ES6 modules)
+│   ├── 🚀 main.js             # Application entry point
+│   ├── 📋 index.js            # Barrel exports
+│   ├── ⚙️ config.js           # Immutable configuration
+│   ├── 🎯 PassportObfuscator.js # Main orchestrator
+│   ├── 🛠️ utils/
+│   │   └── ErrorHandler.js    # Centralized error handling
+│   ├── 🖼️ processors/
+│   │   └── ImageProcessor.js  # Image processing operations
+│   ├── 🎨 canvas/
+│   │   └── CanvasManager.js   # Canvas management
+│   ├── 🔧 tools/
+│   │   ├── ObfuscationTool.js # Base tool class
+│   │   ├── PixelateTool.js    # Pixelation tool
+│   │   ├── BlackoutTool.js    # Blackout tool
+│   │   └── ObfuscationToolFactory.js # Tool factory
+│   ├── 📋 managers/
+│   │   ├── WatermarkManager.js # Watermark operations
+│   │   └── FileManager.js     # File operations
+│   └── 🎮 controllers/
+│       └── UIController.js    # UI event management
+└── 🧪 tests/                  # Jest test suite
+    ├── setup.js               # Test configuration
+    ├── imageProcessor.test.js # Image processing tests
+    ├── obfuscationTools.test.js # Tool tests
+    ├── integration.test.js    # Integration tests
 ```
 
-## 🛠️ Instalación
+## 🛠️ Development
 
-No requiere instalación. Simplemente:
+### Prerequisites
 
-1. Clona o descarga este repositorio
-2. Abre `index.html` en tu navegador web
-3. ¡Listo para usar!
+- Modern web browser with ES6 module support
+- Python 3 (for development server)
+- Node.js (for testing)
+
+### Getting Started
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd MaskMyDoc
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start development server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Run tests**
+   ```bash
+   npm test
+   ```
+
+## 🧪 Testing
+
+The application includes comprehensive Jest tests with **48 passing tests**:
 
 ```bash
-git clone https://github.com/davcortez/MaskMyDoc.git
-cd MaskMyDoc
-# Abre index.html en tu navegador
+# Run all tests
+npm test
+
+# Test specific modules
+npm test -- --testNamePattern="ErrorHandler"
+npm test -- --testNamePattern="ObfuscationTools"
 ```
 
-## 🌐 Compatibilidad de Navegadores
+### Test Coverage
 
-- ✅ Chrome 60+
-- ✅ Firefox 55+
-- ✅ Safari 11+
-- ✅ Edge 79+
-- ✅ Navegadores móviles modernos
+✅ **48 tests passing** with comprehensive coverage of:
 
-## 🎯 Casos de Uso
+- **🖼️ ImageProcessor** - Scaling and grayscale conversion
+- **🎨 CanvasManager** - Canvas operations and coordinates
+- **🔧 ObfuscationTools** - All tools + factory pattern
+- **🏷️ WatermarkManager** - Watermark logic
+- **📁 FileManager** - Upload/download operations
+- **🔗 Integration Tests** - Complete workflow testing
+- **⚡ Performance Tests** - Benchmarks and optimization
+- **🛡️ Edge Cases** - Error handling and validation
 
-### 📄 **Documentos Oficiales**
-- Pasaportes ecuatorianos
-- Cédulas de identidad
-- Documentos de viaje
+## 🌐 Browser Support
 
-### 🔐 **Protección de Datos**
-- Ocultar números de documento
-- Proteger información personal
-- Crear versiones seguras para compartir
+- ✅ Chrome 61+ (ES6 modules support)
+- ✅ Firefox 60+ (ES6 modules support)
+- ✅ Safari 10.1+ (ES6 modules support)
+- ✅ Edge 16+ (ES6 modules support)
 
-### 🏢 **Uso Profesional**
-- Verificación de documentos
-- Procesamiento de solicitudes
-- Archivos de seguridad
+## 🔒 Security Features
 
-## ⚡ Características Técnicas
+- **🔍 File Signature Validation**: Magic number checking prevents malicious files
+- **📏 Size Limits**: Prevents memory exhaustion attacks
+- **📝 Extension Validation**: Whitelist of allowed file types
+- **🏠 Local Processing**: No data sent to external servers
+- **🛡️ Input Sanitization**: Comprehensive validation of all inputs
 
-### 🎨 **Procesamiento de Imagen**
-- **Canvas HTML5**: Manipulación avanzada de imágenes
-- **Algoritmos optimizados**: Blur, pixelación y ocultación eficientes
-- **Conversión automática**: Escala de grises profesional
+## 🎯 Performance
 
-### 💾 **Gestión de Datos**
-- **FileReader API**: Lectura local de archivos
-- **ImageData**: Manipulación a nivel de píxel
-- **Blob URLs**: Descarga segura sin servidor
+- **⚡ Lazy Loading**: Modules loaded on demand
+- **💾 Memory Management**: Proper cleanup of canvas operations
+- **🛡️ Error Boundaries**: Graceful degradation on failures
 
-### 📱 **Interfaz Responsiva**
-- **CSS Grid/Flexbox**: Layout moderno y flexible
-- **Touch Events**: Soporte nativo para móviles
-- **Media Queries**: Adaptación automática a diferentes pantallas
+## 🚀 Usage
 
-## 🔧 Personalización
+### 1. **📤 Upload Image**
+- Click "Seleccionar Imagen"
+- Choose a passport/ID image file
+- Image automatically converts to grayscale
 
-### Modificar Marca de Agua
-En `script.js`, línea ~109:
-```javascript
-const text = 'TU_TEXTO_AQUI';
-```
+### 2. **🎭 Hide Information**
+- Select an obfuscation tool
+- Click and drag over sensitive areas
+- Repeat for multiple areas
 
-### Ajustar Tamaño de Pincel
-En `script.js`, línea ~9:
-```javascript
-this.brushSize = 30;
-```
+### 3. **📥 Download**
+- Optionally enable watermark
+- Click "Descargar Imagen"
+- Saves as PNG file
 
-### Cambiar Colores
-En `styles.css`, modifica las variables de color:
-```css
---primary-color: #667eea;
---secondary-color: #764ba2;
-```
+## 🎯 Use Cases
 
-## 🤝 Contribuciones
+### 📄 **Official Documents**
+- Ecuadorian passports
+- Identity cards
+- Travel documents
 
-Las contribuciones son bienvenidas. Por favor:
+### 🔐 **Data Protection**
+- Hide document numbers
+- Protect personal information
+- Create secure versions for sharing
 
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
+## 🤝 Contributing
 
-## 📝 Licencia
+1. Fork the repository
+2. Create a feature branch
+3. Add tests for new functionality
+4. Ensure all tests pass
+5. Submit a pull request
 
-Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
+The modular architecture makes contributions easier by allowing developers to work on specific modules without affecting the entire codebase.
 
-## 🔒 Seguridad y Privacidad
+## 📄 License
 
-- **Sin telemetría**: No se recopilan datos de usuario
-- **Procesamiento local**: Todas las operaciones en el cliente
-- **Sin cookies**: No se almacenan datos persistentes
-- **Código abierto**: Completamente auditable
+MIT License - see LICENSE file for details.
 
-## 📞 Soporte
+## 🔒 Security and Privacy
 
-Si tienes problemas o preguntas:
-- Abre un [Issue](https://github.com/davcortez/MaskMyDoc/issues)
-- Revisa la documentación
-- Verifica la compatibilidad de tu navegador
+- **🚫 No Telemetry**: No user data collection
+- **🏠 Local Processing**: All operations on client-side
+- **🍪 No Cookies**: No persistent data storage
+- **📖 Open Source**: Completely auditable
+- **🧪 Rigorous Testing**: Test suite ensures reliability
+
+## 📞 Support
+
+If you have problems or questions:
+- Open an [Issue](https://github.com/davcortez/MaskMyDoc/issues)
+- Review the documentation
+- Check browser compatibility
+- Run tests: `npm test`
 
 ---
 
-⭐ **¿Te fue útil este proyecto? ¡Deja una estrella!**
+⭐ **Found this project helpful? Give it a star!**
 
-Desarrollado con ❤️ para la protección de datos personales en Ecuador 🇪🇨 
+Developed with ❤️ for personal data protection in Ecuador 🇪🇨 
