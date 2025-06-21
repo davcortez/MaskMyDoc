@@ -1,0 +1,12 @@
+export { CONFIG } from './config.js';
+export { ErrorHandler } from './utils/ErrorHandler.js';
+export { ImageProcessor } from './processors/ImageProcessor.js';
+export { CanvasManager } from './canvas/CanvasManager.js';
+export { ObfuscationTool } from './tools/ObfuscationTool.js';
+export { PixelateTool } from './tools/PixelateTool.js';
+export { BlackoutTool } from './tools/BlackoutTool.js';
+export { ObfuscationToolFactory } from './tools/ObfuscationToolFactory.js';
+export { WatermarkManager } from './managers/WatermarkManager.js';
+export { FileManager } from './managers/FileManager.js';
+export { UIController } from './controllers/UIController.js';
+export { PassportObfuscator } from './PassportObfuscator.js';
