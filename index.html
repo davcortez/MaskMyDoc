@@ -3,71 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Obfuscador de Documentos - DNI Ecuador</title>
+    <title>Obfuscador de Documentos</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>MaskMyDoc</h1>
-        <p>Sube una imagen de pasaporte, oculta datos sensibles y descarga la imagen procesada</p>
-        
-        <div class="upload-section">
-            <input type="file" 
-                   id="imageInput" 
-                   accept=".jpg,.jpeg,.png,.webp,.gif,image/jpeg,image/png,image/webp,image/gif" 
-                   class="file-input"
-                   title="Seleccione archivos JPG, PNG, WebP o GIF (máximo 50MB)">
-            <label for="imageInput" class="upload-btn">Seleccionar Imagen</label>
-            <div class="file-info">
-                <small>Formatos aceptados: JPG, PNG, WebP, GIF (máximo 50MB)</small>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🛡️</span>
+                <span class="logo-text">MaskMyDoc</span>
             </div>
+            <!-- TODO: Responsive navbar -->
+            <!-- <nav class="nav-menu">
+                <a href="#home" class="nav-link active">Inicio</a>
+                <a href="#security" class="nav-link">Seguridad</a>
+                <a href="#help" class="nav-link">Ayuda</a>
+            </nav> -->
         </div>
+    </header>
 
-        <div class="canvas-section" id="canvasSection" style="display: none;">
-            <canvas id="canvas"></canvas>
-            <div class="controls">
-                <div class="control-group">
-                    <label>Herramienta de Ocultación:</label>
-                    <select id="obfuscationTool">
-                        <option value="pixelate">Pixelar</option>
-                        <option value="blackout">Tachar</option>
-                    </select>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Protege tu <span class="highlight">Información Personal</span>
+            </h1>
+            <p class="hero-subtitle">
+                Oculta datos sensibles de tus documentos de forma segura y profesional
+            </p>
+            <div class="hero-features">
+                <div class="feature-badge">
+                    <span class="feature-icon">🔒</span>
+                    <span>100% Local</span>
                 </div>
-                <div class="control-group">
-                    <label>
-                        <input type="checkbox" id="addWatermark">
-                        Agregar marca de agua "datosecuatorianos"
-                    </label>
+                <div class="feature-badge">
+                    <span class="feature-icon">⚡</span>
+                    <span>Rápido</span>
                 </div>
-                <div class="control-group">
-                    <button id="clearObfuscation">Limpiar Ocultación</button>
-                    <button id="downloadBtn">Descargar Imagen</button>
+                <div class="feature-badge">
+                    <span class="feature-icon">🎯</span>
+                    <span>Preciso</span>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div class="instructions">
-            <h3>Instrucciones:</h3>
-            <ol>
-                <li>Sube una imagen de pasaporte usando el botón "Seleccionar Imagen"</li>
-                <li>Elige una herramienta de ocultación (Pixelar o Tachar)</li>
-                <li>Haz clic y arrastra sobre la imagen para ocultar áreas sensibles</li>
-                <li>Opcionalmente, marca la casilla para agregar la marca de agua "datosecuatorianos"</li>
-                <li>Haz clic en "Descargar Imagen" para guardar la imagen procesada</li>
-            </ol>
-            
-            <div class="security-info">
-                <h4>🔒 Seguridad y Privacidad:</h4>
-                <ul>
-                    <li>Todas las imágenes se procesan localmente en tu navegador</li>
-                    <li>No se suben archivos a ningún servidor</li>
-                    <li>Tus documentos nunca salen de tu dispositivo</li>
-                    <li>Validación automática de tipo y tamaño de archivo</li>
-                </ul>
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <section class="help-section" id="help">
+            <div class="help-container">
+                <div class="help-header">
+                    <h2>¿Cómo Usar MaskMyDoc?</h2>
+                    <p>Guía paso a paso para proteger tus documentos</p>
+                </div>
+                
+                <div class="help-steps">
+                    <div class="help-step">
+                        <div class="help-step-number">1</div>
+                        <div class="help-step-content">
+                            <h3>Sube tu Documento</h3>
+                            <p>Arrastra y suelta tu imagen de DNI, pasaporte o documento oficial. Acepta formatos JPG, PNG, WebP y GIF.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="help-step">
+                        <div class="help-step-number">2</div>
+                        <div class="help-step-content">
+                            <h3>Selecciona tu Herramienta</h3>
+                            <p>Elige entre pixelado (difumina la información) o tachado (bloquea completamente) según tus necesidades.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="help-step">
+                        <div class="help-step-number">3</div>
+                        <div class="help-step-content">
+                            <h3>Oculta los Datos</h3>
+                            <p>Haz clic y arrastra sobre las áreas que deseas ocultar. Puedes aplicar múltiples áreas de ocultación.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="help-step">
+                        <div class="help-step-number">4</div>
+                        <div class="help-step-content">
+                            <h3>Descarga el Resultado</h3>
+                            <p>Opcionalmente agrega una marca de agua y descarga tu documento protegido en alta calidad.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+        </section>
+
+        <section class="upload-section" id="uploadSection">
+            <div class="upload-container">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">📄</div>
+                    <h3>Selecciona tu documento</h3>
+                    <p>Arrastra y suelta tu imagen aquí o haz clic para seleccionar</p>
+                    <input type="file" 
+                           id="imageInput" 
+                           accept=".jpg,.jpeg,.png,.webp,.gif,image/jpeg,image/png,image/webp,image/gif" 
+                           class="file-input"
+                           title="Seleccione archivos JPG, PNG, WebP o GIF (máximo 50MB)">
+                    <button class="upload-btn" onclick="document.getElementById('imageInput').click()">
+                        <span class="btn-icon">📁</span>
+                        Seleccionar Archivo
+                    </button>
+                </div>
+                <div class="upload-info">
+                    <div class="supported-formats">
+                        <h4>Formatos Soportados</h4>
+                        <div class="format-list">
+                            <span class="format-item">JPG</span>
+                            <span class="format-item">PNG</span>
+                            <span class="format-item">WebP</span>
+                            <span class="format-item">GIF</span>
+                        </div>
+                    </div>
+                    <div class="file-limits">
+                        <p><strong>Tamaño máximo:</strong> 50MB</p>
+                        <p><strong>Resolución:</strong> Ilimitada</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="editor-section" id="editorSection" style="display: none;">
+            <div class="editor-container">
+                <div class="editor-header">
+                    <h2>Editor de Documento</h2>
+                    <div class="editor-actions">
+                        <button class="btn-secondary" id="resetBtn">
+                            <span class="btn-icon">🔄</span>
+                            Reiniciar
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="editor-content">
+                    <div class="canvas-container">
+                        <canvas id="canvas"></canvas>
+                        <div class="canvas-overlay" id="canvasOverlay"></div>
+                    </div>
+                    
+                    <div class="editor-sidebar">
+                        <div class="tool-panel">
+                            <h3>Herramientas</h3>
+                            <div class="tool-options">
+                                <label class="tool-option">
+                                    <input type="radio" name="obfuscationTool" value="pixelate" checked>
+                                    <div class="tool-card">
+                                        <div class="tool-icon">🔲</div>
+                                        <div class="tool-info">
+                                            <h4>Pixelar</h4>
+                                            <p>Aplica efecto de pixeles</p>
+                                        </div>
+                                    </div>
+                                </label>
+                                
+                                <label class="tool-option">
+                                    <input type="radio" name="obfuscationTool" value="blackout">
+                                    <div class="tool-card">
+                                        <div class="tool-icon">⬛</div>
+                                        <div class="tool-info">
+                                            <h4>Tachar</h4>
+                                            <p>Bloquea completamente</p>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="options-panel">
+                            <h3>Opciones</h3>
+                            <label class="option-item">
+                                <input type="checkbox" id="addWatermark">
+                                <div class="checkbox-custom"></div>
+                                <div class="option-text">
+                                    <h4>Marca de Agua</h4>
+                                    <p>Agregar "datosecuatorianos"</p>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <div class="action-panel">
+                            <button class="btn-danger" id="clearObfuscation">
+                                <span class="btn-icon">🗑️</span>
+                                Limpiar Todo
+                            </button>
+                            <button class="btn-primary" id="downloadBtn">
+                                <span class="btn-icon">💾</span>
+                                Descargar Imagen
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="security-section" id="security">
+            <div class="security-container">
+                <div class="security-header">
+                    <h2>🔐 Tu Privacidad es Nuestra Prioridad</h2>
+                    <p>Conoce cómo protegemos tu información</p>
+                </div>
+                
+                <div class="security-grid">
+                    <div class="security-card">
+                        <div class="security-icon">🖥️</div>
+                        <h3>Procesamiento Local</h3>
+                        <p>Todas las imágenes se procesan directamente en tu navegador. Nunca se envían a servidores externos.</p>
+                    </div>
+                    
+                    <div class="security-card">
+                        <div class="security-icon">🚫</div>
+                        <h3>Sin Almacenamiento</h3>
+                        <p>No guardamos ni almacenamos tus documentos. Todo se elimina automáticamente al cerrar la página.</p>
+                    </div>
+                    
+                    <div class="security-card">
+                        <div class="security-icon">🔍</div>
+                        <h3>Código Abierto</h3>
+                        <p>Puedes revisar el código fuente para verificar que no hay funciones ocultas o maliciosas.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
 
     <script type="module" src="src/main.js"></script>
 </body>
-</html> 
+</html>
