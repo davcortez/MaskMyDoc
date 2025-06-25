@@ -3,71 +3,489 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Obfuscador de Documentos - DNI Ecuador</title>
+    <title>Obfuscador de Documentos</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>Obfuscador de Documentos</h1>
-        <p>Sube una imagen de pasaporte, oculta datos sensibles y descarga la imagen procesada</p>
-        
-        <div class="upload-section">
-            <input type="file" 
-                   id="imageInput" 
-                   accept=".jpg,.jpeg,.png,.webp,.gif,image/jpeg,image/png,image/webp,image/gif" 
-                   class="file-input"
-                   title="Seleccione archivos JPG, PNG, WebP o GIF (máximo 50MB)">
-            <label for="imageInput" class="upload-btn">Seleccionar Imagen</label>
-            <div class="file-info">
-                <small>Formatos aceptados: JPG, PNG, WebP, GIF (máximo 50MB)</small>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🛡️</span>
+                <span class="logo-text">MaskMyDoc</span>
+            </div>
+            <!-- Responsive navbar -->
+            <nav class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link active">Inicio</a>
+                <a href="upload.html" class="nav-link">Subir</a>
+                <a href="editor.html" class="nav-link">Editor</a>
+            </nav>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Protege tu <span class="highlight">Información Personal</span>
+            </h1>
+            <p class="hero-subtitle">
+                Oculta datos sensibles de tus documentos de forma segura y profesional
+            </p>
+            <div class="hero-features">
+                <div class="feature-badge">
+                    <span class="feature-icon">🔒</span>
+                    <span>100% Local</span>
+                </div>
+                <div class="feature-badge">
+                    <span class="feature-icon">⚡</span>
+                    <span>Rápido</span>
+                </div>
+                <div class="feature-badge">
+                    <span class="feature-icon">🎯</span>
+                    <span>Preciso</span>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="canvas-section" id="canvasSection" style="display: none;">
-            <canvas id="canvas"></canvas>
-            <div class="controls">
-                <div class="control-group">
-                    <label>Herramienta de Ocultación:</label>
-                    <select id="obfuscationTool">
-                        <option value="pixelate">Pixelar</option>
-                        <option value="blackout">Tachar</option>
-                    </select>
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <section class="help-section" id="help">
+            <div class="help-container">
+                <div class="help-header">
+                    <div class="help-badge">
+                        <span class="help-badge-icon">💡</span>
+                        <span>Guía de Usuario</span>
+                    </div>
+                    <h2>¿Cómo Usar MaskMyDoc?</h2>
+                    <p>Sigue estos sencillos pasos para proteger tus documentos de forma segura</p>
+                    
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="helpProgress"></div>
+                        </div>
+                        <span class="progress-text">
+                            <span id="currentStep">1</span> de <span id="totalSteps">4</span> pasos
+                        </span>
+                    </div>
                 </div>
-                <div class="control-group">
-                    <label>
-                        <input type="checkbox" id="addWatermark">
-                        Agregar marca de agua "datosecuatorianos"
-                    </label>
+                
+                <div class="help-steps-desktop">
+                    <div class="step-timeline">
+                        <div class="help-step" data-step="1">
+                            <div class="help-step-marker">
+                        <div class="help-step-number">1</div>
+                                <div class="step-connector"></div>
+                            </div>
+                        <div class="help-step-content">
+                                <div class="step-icon">📄</div>
+                            <h3>Sube tu Documento</h3>
+                                <p>Arrastra y suelta tu imagen de DNI, pasaporte o documento oficial. Acepta formatos JPG, PNG, WebP y GIF hasta 50MB.</p>
+                                <div class="step-features">
+                                    <span class="feature-tag">Formatos múltiples</span>
+                                    <span class="feature-tag">Hasta 50MB</span>
+                                    <span class="feature-tag">Arrastrar y soltar</span>
+                                </div>
+                            </div>
+                    </div>
+                    
+                        <div class="help-step" data-step="2">
+                            <div class="help-step-marker">
+                        <div class="help-step-number">2</div>
+                                <div class="step-connector"></div>
+                            </div>
+                        <div class="help-step-content">
+                                <div class="step-icon">🛠️</div>
+                            <h3>Selecciona tu Herramienta</h3>
+                                <p>Elige entre pixelado (difumina la información) o tachado (bloquea completamente) según tus necesidades de privacidad.</p>
+                                <div class="step-features">
+                                    <span class="feature-tag">Pixelado</span>
+                                    <span class="feature-tag">Tachado</span>
+                                    <span class="feature-tag">Reversible</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="help-step" data-step="3">
+                            <div class="help-step-marker">
+                                <div class="help-step-number">3</div>
+                                <div class="step-connector"></div>
+                            </div>
+                            <div class="help-step-content">
+                                <div class="step-icon">🎯</div>
+                                <h3>Oculta los Datos</h3>
+                                <p>Haz clic y arrastra sobre las áreas que deseas ocultar. Puedes aplicar múltiples áreas de ocultación con precisión.</p>
+                                <div class="step-features">
+                                    <span class="feature-tag">Múltiples áreas</span>
+                                    <span class="feature-tag">Precisión total</span>
+                                    <span class="feature-tag">Vista previa</span>
+                                </div>
+                        </div>
+                    </div>
+                    
+                        <div class="help-step" data-step="4">
+                            <div class="help-step-marker">
+                                <div class="help-step-number">4</div>
+                            </div>
+                        <div class="help-step-content">
+                                <div class="step-icon">💾</div>
+                                <h3>Descarga el Resultado</h3>
+                                <p>Opcionalmente agrega una marca de agua y descarga tu documento protegido en alta calidad, listo para compartir.</p>
+                                <div class="step-features">
+                                    <span class="feature-tag">Alta calidad</span>
+                                    <span class="feature-tag">Marca de agua</span>
+                                    <span class="feature-tag">Descarga instantánea</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="control-group">
-                    <button id="clearObfuscation">Limpiar Ocultación</button>
-                    <button id="downloadBtn">Descargar Imagen</button>
+                
+                <div class="help-steps-mobile">
+                    <div class="help-accordion">
+                        <div class="accordion-item active" data-step="1">
+                            <button class="accordion-header" aria-expanded="true">
+                                <div class="accordion-step">
+                                    <span class="accordion-number">1</span>
+                                    <span class="accordion-icon">📄</span>
+                                </div>
+                                <div class="accordion-title">
+                                    <h3>Sube tu Documento</h3>
+                                    <span class="accordion-status">Completado</span>
+                                </div>
+                                <div class="accordion-toggle">
+                                    <span class="toggle-icon">−</span>
+                                </div>
+                            </button>
+                            <div class="accordion-content">
+                                <p>Arrastra y suelta tu imagen de DNI, pasaporte o documento oficial. Acepta formatos JPG, PNG, WebP y GIF hasta 50MB.</p>
+                                <div class="mobile-features">
+                                    <div class="feature-item">
+                                        <span class="feature-icon">📱</span>
+                                        <span>Toca para seleccionar</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <span class="feature-icon">📁</span>
+                                        <span>Múltiples formatos</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <span class="feature-icon">⚡</span>
+                                        <span>Carga rápida</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item" data-step="2">
+                            <button class="accordion-header" aria-expanded="false">
+                                <div class="accordion-step">
+                                    <span class="accordion-number">2</span>
+                                    <span class="accordion-icon">🛠️</span>
+                                </div>
+                                <div class="accordion-title">
+                                    <h3>Selecciona tu Herramienta</h3>
+                                    <span class="accordion-status">Pendiente</span>
+                                </div>
+                                <div class="accordion-toggle">
+                                    <span class="toggle-icon">+</span>
+                                </div>
+                            </button>
+                            <div class="accordion-content">
+                                <p>Elige entre pixelado (difumina la información) o tachado (bloquea completamente) según tus necesidades de privacidad.</p>
+                                <div class="mobile-features">
+                                    <div class="feature-item">
+                                        <span class="feature-icon">🔲</span>
+                                        <span>Pixelado suave</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <span class="feature-icon">⬛</span>
+                                        <span>Bloqueo total</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <span class="feature-icon">🔄</span>
+                                        <span>Cambio rápido</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item" data-step="3">
+                            <button class="accordion-header" aria-expanded="false">
+                                <div class="accordion-step">
+                                    <span class="accordion-number">3</span>
+                                    <span class="accordion-icon">🎯</span>
+                                </div>
+                                <div class="accordion-title">
+                                    <h3>Oculta los Datos</h3>
+                                    <span class="accordion-status">Pendiente</span>
+                                </div>
+                                <div class="accordion-toggle">
+                                    <span class="toggle-icon">+</span>
+                                </div>
+                            </button>
+                            <div class="accordion-content">
+                                <p>Toca y arrastra sobre las áreas que deseas ocultar. Puedes aplicar múltiples áreas de ocultación con precisión.</p>
+                                <div class="mobile-features">
+                                    <div class="feature-item">
+                                        <span class="feature-icon">👆</span>
+                                        <span>Toque intuitivo</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <span class="feature-icon">🎯</span>
+                                        <span>Precisión total</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <span class="feature-icon">👁️</span>
+                                        <span>Vista previa</span>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    
+                        <div class="accordion-item" data-step="4">
+                            <button class="accordion-header" aria-expanded="false">
+                                <div class="accordion-step">
+                                    <span class="accordion-number">4</span>
+                                    <span class="accordion-icon">💾</span>
+                                </div>
+                                <div class="accordion-title">
+                            <h3>Descarga el Resultado</h3>
+                                    <span class="accordion-status">Pendiente</span>
+                                </div>
+                                <div class="accordion-toggle">
+                                    <span class="toggle-icon">+</span>
+                                </div>
+                            </button>
+                            <div class="accordion-content">
+                                <p>Opcionalmente agrega una marca de agua y descarga tu documento protegido en alta calidad, listo para compartir.</p>
+                                <div class="mobile-features">
+                                    <div class="feature-item">
+                                        <span class="feature-icon">🏆</span>
+                                        <span>Alta calidad</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <span class="feature-icon">🔒</span>
+                                        <span>Marca de agua</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <span class="feature-icon">📤</span>
+                                        <span>Compartir fácil</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Action CTA -->
+                <div class="help-cta">
+                    <div class="cta-content">
+                        <h3>¿Listo para comenzar?</h3>
+                        <p>Protege tu información personal en segundos</p>
+                        <button class="cta-button" onclick="window.location.href='upload.html'">
+                            <span class="cta-icon">🚀</span>
+                            <span>Comenzar</span>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="instructions">
-            <h3>Instrucciones:</h3>
-            <ol>
-                <li>Sube una imagen de pasaporte usando el botón "Seleccionar Imagen"</li>
-                <li>Elige una herramienta de ocultación (Pixelar o Tachar)</li>
-                <li>Haz clic y arrastra sobre la imagen para ocultar áreas sensibles</li>
-                <li>Opcionalmente, marca la casilla para agregar la marca de agua "datosecuatorianos"</li>
-                <li>Haz clic en "Descargar Imagen" para guardar la imagen procesada</li>
-            </ol>
+        <section class="security-section" id="security">
+            <div class="security-container">
+                <div class="security-header">
+                    <h2>🔐 Tu Privacidad es Nuestra Prioridad</h2>
+                    <p>Conoce cómo protegemos tu información</p>
+                </div>
+                
+                <div class="security-grid">
+                    <div class="security-card">
+                        <div class="security-icon">🖥️</div>
+                        <h3>Procesamiento Local</h3>
+                        <p>Todas las imágenes se procesan directamente en tu navegador. Nunca se envían a servidores externos.</p>
+                    </div>
+                    
+                    <div class="security-card">
+                        <div class="security-icon">🚫</div>
+                        <h3>Sin Almacenamiento</h3>
+                        <p>No guardamos ni almacenamos tus documentos. Todo se elimina automáticamente al cerrar la página.</p>
+                    </div>
+                    
+                    <div class="security-card">
+                        <div class="security-icon">🔍</div>
+                        <h3>Código Abierto</h3>
+                        <p>Puedes revisar el código fuente para verificar que no hay funciones ocultas o maliciosas.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Mobile menu toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const navMenu = document.getElementById('navMenu');
             
-            <div class="security-info">
-                <h4>🔒 Seguridad y Privacidad:</h4>
-                <ul>
-                    <li>Todas las imágenes se procesan localmente en tu navegador</li>
-                    <li>No se suben archivos a ningún servidor</li>
-                    <li>Tus documentos nunca salen de tu dispositivo</li>
-                    <li>Validación automática de tipo y tamaño de archivo</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+            if (mobileMenuToggle && navMenu) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                    mobileMenuToggle.classList.toggle('active');
+                });
 
-    <script type="module" src="src/main.js"></script>
+                // Close menu when clicking on nav links
+                const navLinks = navMenu.querySelectorAll('.nav-link');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        navMenu.classList.remove('active');
+                        mobileMenuToggle.classList.remove('active');
+                    });
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!navMenu.contains(event.target) && !mobileMenuToggle.contains(event.target)) {
+                        navMenu.classList.remove('active');
+                        mobileMenuToggle.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Help section functionality
+            initializeHelpSection();
+        });
+
+        function initializeHelpSection() {
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            const progressFill = document.getElementById('helpProgress');
+            const currentStepSpan = document.getElementById('currentStep');
+            const totalStepsSpan = document.getElementById('totalSteps');
+            
+            if (!accordionItems.length) return;
+            
+            totalStepsSpan.textContent = accordionItems.length;
+            
+            // Accordion functionality
+            accordionItems.forEach((item, index) => {
+                const header = item.querySelector('.accordion-header');
+                const content = item.querySelector('.accordion-content');
+                const toggleIcon = item.querySelector('.toggle-icon');
+                const status = item.querySelector('.accordion-status');
+                
+                header.addEventListener('click', function() {
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all other items
+                    accordionItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                            const otherHeader = otherItem.querySelector('.accordion-header');
+                            const otherToggleIcon = otherItem.querySelector('.toggle-icon');
+                            otherHeader.setAttribute('aria-expanded', 'false');
+                            otherToggleIcon.textContent = '+';
+                        }
+                    });
+                    
+                    // Toggle current item
+                    if (isActive) {
+                        item.classList.remove('active');
+                        header.setAttribute('aria-expanded', 'false');
+                        toggleIcon.textContent = '+';
+                    } else {
+                        item.classList.add('active');
+                        header.setAttribute('aria-expanded', 'true');
+                        toggleIcon.textContent = '−';
+                        
+                        // Update progress
+                        updateProgress(index + 1);
+                        
+                        // Mark as completed
+                        if (status) {
+                            status.textContent = 'Completado';
+                        }
+                        
+                        // Scroll to item (mobile)
+                        if (window.innerWidth <= 768) {
+                            setTimeout(() => {
+                                item.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'center'
+                                });
+                            }, 150);
+                        }
+                    }
+                });
+                
+                // Keyboard accessibility
+                header.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        header.click();
+                    }
+                });
+            });
+            
+            // Desktop step hover effects
+            const desktopSteps = document.querySelectorAll('.help-steps-desktop .help-step');
+            desktopSteps.forEach((step, index) => {
+                step.addEventListener('mouseenter', function() {
+                    updateProgress(index + 1);
+                });
+                
+                step.addEventListener('click', function() {
+                    const status = step.querySelector('.accordion-status');
+                    if (status) {
+                        status.textContent = 'Completado';
+                    }
+                });
+            });
+            
+            function updateProgress(step) {
+                const progressPercentage = (step / accordionItems.length) * 100;
+                if (progressFill) {
+                    progressFill.style.width = `${progressPercentage}%`;
+                }
+                if (currentStepSpan) {
+                    currentStepSpan.textContent = step;
+                }
+            }
+            
+            // Auto-expand first item on mobile
+            if (window.innerWidth <= 768 && accordionItems.length > 0) {
+                const firstItem = accordionItems[0];
+                firstItem.classList.add('active');
+                const firstHeader = firstItem.querySelector('.accordion-header');
+                const firstToggleIcon = firstItem.querySelector('.toggle-icon');
+                firstHeader.setAttribute('aria-expanded', 'true');
+                firstToggleIcon.textContent = '−';
+                updateProgress(1);
+            }
+            
+            // Reset progress on window resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    // Desktop view - reset to step 1
+                    updateProgress(1);
+                }
+            });
+            
+            // Animate progress bar on load
+            setTimeout(() => {
+                updateProgress(1);
+            }, 500);
+        }
+    </script>
 </body>
-</html> 
+</html>

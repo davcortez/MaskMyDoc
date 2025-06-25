@@ -90,8 +90,9 @@ export class PassportObfuscator {
     }
 
     applyObfuscation(x, y) {
-        const toolSelect = document.getElementById('obfuscationTool');
-        const toolType = toolSelect ? toolSelect.value : 'blackout';
+        // Get the selected tool from radio buttons instead of a select element
+        const selectedTool = document.querySelector('input[name="obfuscationTool"]:checked');
+        const toolType = selectedTool ? selectedTool.value : 'blackout';
         
         const tool = ObfuscationToolFactory.createTool(toolType);
         const radius = this.brushSize;
@@ -103,6 +104,25 @@ export class PassportObfuscator {
             tool.apply(ctx, x, y, radius);
             this.addWatermark();
         }
+    }
+
+    // Method to update selected tool programmatically
+    updateSelectedTool(toolType) {
+        // Update the radio button selection
+        const targetRadio = document.querySelector(`input[name="obfuscationTool"][value="${toolType}"]`);
+        if (targetRadio) {
+            targetRadio.checked = true;
+        }
+        
+        // Update mobile tool toggle if it exists
+        const mobileToggles = document.querySelectorAll('.tool-toggle');
+        mobileToggles.forEach(toggle => {
+            if (toggle.dataset.tool === toolType) {
+                toggle.classList.add('active');
+            } else {
+                toggle.classList.remove('active');
+            }
+        });
     }
 
     clearObfuscation() {
