@@ -5,6 +5,11 @@ import { PassportObfuscator } from './PassportObfuscator.js';
 document.addEventListener('DOMContentLoaded', () => {
     try {
         const app = new PassportObfuscator();
+        
+        // Expose updateSelectedTool method globally for UI synchronization
+        window.updateSelectedTool = (toolType) => {
+            app.updateSelectedTool(toolType);
+        };
     } catch (error) {
         // TODO: better error handling here
         console.log('Something went wrong: ' + error.message);

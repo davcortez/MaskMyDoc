@@ -17,12 +17,17 @@
                 <span class="logo-icon">🛡️</span>
                 <span class="logo-text">MaskMyDoc</span>
             </div>
-            <!-- TODO: Responsive navbar -->
-            <!-- <nav class="nav-menu">
+            <!-- Responsive navbar -->
+            <nav class="nav-menu" id="navMenu">
                 <a href="#home" class="nav-link active">Inicio</a>
                 <a href="#security" class="nav-link">Seguridad</a>
                 <a href="#help" class="nav-link">Ayuda</a>
-            </nav> -->
+            </nav>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
         </div>
     </header>
 
@@ -58,41 +63,239 @@
         <section class="help-section" id="help">
             <div class="help-container">
                 <div class="help-header">
+                    <div class="help-badge">
+                        <span class="help-badge-icon">💡</span>
+                        <span>Guía de Usuario</span>
+                    </div>
                     <h2>¿Cómo Usar MaskMyDoc?</h2>
-                    <p>Guía paso a paso para proteger tus documentos</p>
+                    <p>Sigue estos sencillos pasos para proteger tus documentos de forma segura</p>
+                    
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="helpProgress"></div>
+                        </div>
+                        <span class="progress-text">
+                            <span id="currentStep">1</span> de <span id="totalSteps">4</span> pasos
+                        </span>
+                    </div>
                 </div>
                 
-                <div class="help-steps">
-                    <div class="help-step">
+                <div class="help-steps-desktop">
+                    <div class="step-timeline">
+                        <div class="help-step" data-step="1">
+                            <div class="help-step-marker">
                         <div class="help-step-number">1</div>
+                                <div class="step-connector"></div>
+                            </div>
                         <div class="help-step-content">
+                                <div class="step-icon">📄</div>
                             <h3>Sube tu Documento</h3>
-                            <p>Arrastra y suelta tu imagen de DNI, pasaporte o documento oficial. Acepta formatos JPG, PNG, WebP y GIF.</p>
-                        </div>
+                                <p>Arrastra y suelta tu imagen de DNI, pasaporte o documento oficial. Acepta formatos JPG, PNG, WebP y GIF hasta 50MB.</p>
+                                <div class="step-features">
+                                    <span class="feature-tag">Formatos múltiples</span>
+                                    <span class="feature-tag">Hasta 50MB</span>
+                                    <span class="feature-tag">Arrastrar y soltar</span>
+                                </div>
+                            </div>
                     </div>
                     
-                    <div class="help-step">
+                        <div class="help-step" data-step="2">
+                            <div class="help-step-marker">
                         <div class="help-step-number">2</div>
+                                <div class="step-connector"></div>
+                            </div>
                         <div class="help-step-content">
+                                <div class="step-icon">🛠️</div>
                             <h3>Selecciona tu Herramienta</h3>
-                            <p>Elige entre pixelado (difumina la información) o tachado (bloquea completamente) según tus necesidades.</p>
+                                <p>Elige entre pixelado (difumina la información) o tachado (bloquea completamente) según tus necesidades de privacidad.</p>
+                                <div class="step-features">
+                                    <span class="feature-tag">Pixelado</span>
+                                    <span class="feature-tag">Tachado</span>
+                                    <span class="feature-tag">Reversible</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="help-step" data-step="3">
+                            <div class="help-step-marker">
+                                <div class="help-step-number">3</div>
+                                <div class="step-connector"></div>
+                            </div>
+                            <div class="help-step-content">
+                                <div class="step-icon">🎯</div>
+                                <h3>Oculta los Datos</h3>
+                                <p>Haz clic y arrastra sobre las áreas que deseas ocultar. Puedes aplicar múltiples áreas de ocultación con precisión.</p>
+                                <div class="step-features">
+                                    <span class="feature-tag">Múltiples áreas</span>
+                                    <span class="feature-tag">Precisión total</span>
+                                    <span class="feature-tag">Vista previa</span>
+                                </div>
                         </div>
                     </div>
                     
-                    <div class="help-step">
-                        <div class="help-step-number">3</div>
+                        <div class="help-step" data-step="4">
+                            <div class="help-step-marker">
+                                <div class="help-step-number">4</div>
+                            </div>
                         <div class="help-step-content">
-                            <h3>Oculta los Datos</h3>
-                            <p>Haz clic y arrastra sobre las áreas que deseas ocultar. Puedes aplicar múltiples áreas de ocultación.</p>
+                                <div class="step-icon">💾</div>
+                                <h3>Descarga el Resultado</h3>
+                                <p>Opcionalmente agrega una marca de agua y descarga tu documento protegido en alta calidad, listo para compartir.</p>
+                                <div class="step-features">
+                                    <span class="feature-tag">Alta calidad</span>
+                                    <span class="feature-tag">Marca de agua</span>
+                                    <span class="feature-tag">Descarga instantánea</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="help-steps-mobile">
+                    <div class="help-accordion">
+                        <div class="accordion-item active" data-step="1">
+                            <button class="accordion-header" aria-expanded="true">
+                                <div class="accordion-step">
+                                    <span class="accordion-number">1</span>
+                                    <span class="accordion-icon">📄</span>
+                                </div>
+                                <div class="accordion-title">
+                                    <h3>Sube tu Documento</h3>
+                                    <span class="accordion-status">Completado</span>
+                                </div>
+                                <div class="accordion-toggle">
+                                    <span class="toggle-icon">−</span>
+                                </div>
+                            </button>
+                            <div class="accordion-content">
+                                <p>Arrastra y suelta tu imagen de DNI, pasaporte o documento oficial. Acepta formatos JPG, PNG, WebP y GIF hasta 50MB.</p>
+                                <div class="mobile-features">
+                                    <div class="feature-item">
+                                        <span class="feature-icon">📱</span>
+                                        <span>Toca para seleccionar</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <span class="feature-icon">📁</span>
+                                        <span>Múltiples formatos</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <span class="feature-icon">⚡</span>
+                                        <span>Carga rápida</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item" data-step="2">
+                            <button class="accordion-header" aria-expanded="false">
+                                <div class="accordion-step">
+                                    <span class="accordion-number">2</span>
+                                    <span class="accordion-icon">🛠️</span>
+                                </div>
+                                <div class="accordion-title">
+                                    <h3>Selecciona tu Herramienta</h3>
+                                    <span class="accordion-status">Pendiente</span>
+                                </div>
+                                <div class="accordion-toggle">
+                                    <span class="toggle-icon">+</span>
+                                </div>
+                            </button>
+                            <div class="accordion-content">
+                                <p>Elige entre pixelado (difumina la información) o tachado (bloquea completamente) según tus necesidades de privacidad.</p>
+                                <div class="mobile-features">
+                                    <div class="feature-item">
+                                        <span class="feature-icon">🔲</span>
+                                        <span>Pixelado suave</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <span class="feature-icon">⬛</span>
+                                        <span>Bloqueo total</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <span class="feature-icon">🔄</span>
+                                        <span>Cambio rápido</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item" data-step="3">
+                            <button class="accordion-header" aria-expanded="false">
+                                <div class="accordion-step">
+                                    <span class="accordion-number">3</span>
+                                    <span class="accordion-icon">🎯</span>
+                                </div>
+                                <div class="accordion-title">
+                                    <h3>Oculta los Datos</h3>
+                                    <span class="accordion-status">Pendiente</span>
+                                </div>
+                                <div class="accordion-toggle">
+                                    <span class="toggle-icon">+</span>
+                                </div>
+                            </button>
+                            <div class="accordion-content">
+                                <p>Toca y arrastra sobre las áreas que deseas ocultar. Puedes aplicar múltiples áreas de ocultación con precisión.</p>
+                                <div class="mobile-features">
+                                    <div class="feature-item">
+                                        <span class="feature-icon">👆</span>
+                                        <span>Toque intuitivo</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <span class="feature-icon">🎯</span>
+                                        <span>Precisión total</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <span class="feature-icon">👁️</span>
+                                        <span>Vista previa</span>
+                                    </div>
+                                </div>
                         </div>
                     </div>
                     
-                    <div class="help-step">
-                        <div class="help-step-number">4</div>
-                        <div class="help-step-content">
+                        <div class="accordion-item" data-step="4">
+                            <button class="accordion-header" aria-expanded="false">
+                                <div class="accordion-step">
+                                    <span class="accordion-number">4</span>
+                                    <span class="accordion-icon">💾</span>
+                                </div>
+                                <div class="accordion-title">
                             <h3>Descarga el Resultado</h3>
-                            <p>Opcionalmente agrega una marca de agua y descarga tu documento protegido en alta calidad.</p>
+                                    <span class="accordion-status">Pendiente</span>
+                                </div>
+                                <div class="accordion-toggle">
+                                    <span class="toggle-icon">+</span>
+                                </div>
+                            </button>
+                            <div class="accordion-content">
+                                <p>Opcionalmente agrega una marca de agua y descarga tu documento protegido en alta calidad, listo para compartir.</p>
+                                <div class="mobile-features">
+                                    <div class="feature-item">
+                                        <span class="feature-icon">🏆</span>
+                                        <span>Alta calidad</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <span class="feature-icon">🔒</span>
+                                        <span>Marca de agua</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <span class="feature-icon">📤</span>
+                                        <span>Compartir fácil</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Action CTA -->
+                <div class="help-cta">
+                    <div class="cta-content">
+                        <h3>¿Listo para comenzar?</h3>
+                        <p>Protege tu información personal en segundos</p>
+                        <button class="cta-button" onclick="document.getElementById('uploadSection').scrollIntoView({behavior: 'smooth'})">
+                            <span class="cta-icon">🚀</span>
+                            <span>Comenzar</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -135,22 +338,46 @@
         <section class="editor-section" id="editorSection" style="display: none;">
             <div class="editor-container">
                 <div class="editor-header">
+                    <div class="editor-title-group">
                     <h2>Editor de Documento</h2>
+                        <p class="editor-subtitle">Selecciona las áreas a ocultar</p>
+                    </div>
                     <div class="editor-actions">
-                        <button class="btn-secondary" id="resetBtn">
+                        <button class="btn-secondary btn-compact" id="resetBtn">
                             <span class="btn-icon">🔄</span>
-                            Reiniciar
+                            <span class="btn-text">Reiniciar</span>
                         </button>
                     </div>
                 </div>
                 
                 <div class="editor-content">
-                    <div class="canvas-container">
+                    <div class="canvas-container" id="canvasSection">
                         <canvas id="canvas"></canvas>
                         <div class="canvas-overlay" id="canvasOverlay"></div>
+                        
+                        <!-- Floating Tool Selector for Mobile -->
+                        <div class="floating-tools" id="floatingTools">
+                            <button class="tool-toggle active" data-tool="pixelate" aria-label="Herramienta de pixelado">
+                                <span class="tool-icon">🔲</span>
+                                <span class="tool-label">Pixelar</span>
+                            </button>
+                            <button class="tool-toggle" data-tool="blackout" aria-label="Herramienta de tachado">
+                                <span class="tool-icon">⬛</span>
+                                <span class="tool-label">Tachar</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Canvas Instructions -->
+                        <div class="canvas-instructions" id="canvasInstructions">
+                            <div class="instruction-content">
+                                <span class="instruction-icon">👆</span>
+                                <p>Toca y arrastra para ocultar información</p>
+                            </div>
+                        </div>
                     </div>
                     
-                    <div class="editor-sidebar">
+                    <!-- Desktop Sidebar -->
+                    <div class="editor-sidebar desktop-only">
                         <div class="tool-panel">
                             <h3>Herramientas</h3>
                             <div class="tool-options">
@@ -193,15 +420,47 @@
                         <div class="action-panel">
                             <button class="btn-danger" id="clearObfuscation">
                                 <span class="btn-icon">🗑️</span>
-                                Limpiar Todo
+                                <span class="btn-text">Limpiar Todo</span>
                             </button>
                             <button class="btn-primary" id="downloadBtn">
                                 <span class="btn-icon">💾</span>
-                                Descargar Imagen
+                                <span class="btn-text">Descargar</span>
                             </button>
                         </div>
                     </div>
                 </div>
+                
+                <!-- Mobile Bottom Sheet -->
+                <div class="mobile-bottom-sheet" id="mobileBottomSheet">
+                    <div class="bottom-sheet-header">
+                        <div class="bottom-sheet-handle"></div>
+                        <h3>Opciones</h3>
+                    </div>
+                    
+                    <div class="bottom-sheet-content">
+                        <div class="mobile-options">
+                            <label class="mobile-option-item">
+                                <input type="checkbox" id="addWatermarkMobile">
+                                <div class="mobile-checkbox"></div>
+                                <span>Agregar marca de agua</span>
+                            </label>
+                        </div>
+                        
+                        <div class="mobile-actions">
+                            <button class="btn-danger btn-mobile" id="clearObfuscationMobile">
+                                <span class="btn-icon">🗑️</span>
+                                <span>Limpiar</span>
+                            </button>
+                            <button class="btn-primary btn-mobile" id="downloadBtnMobile">
+                                <span class="btn-icon">💾</span>
+                                <span>Descargar</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mobile Overlay -->
+                <div class="mobile-overlay" id="mobileOverlay"></div>
             </div>
         </section>
 
@@ -238,5 +497,470 @@
     </main>
 
     <script type="module" src="src/main.js"></script>
+    <script>
+        // Mobile menu toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (mobileMenuToggle && navMenu) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                    mobileMenuToggle.classList.toggle('active');
+                });
+
+                // Close menu when clicking on nav links
+                const navLinks = navMenu.querySelectorAll('.nav-link');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        navMenu.classList.remove('active');
+                        mobileMenuToggle.classList.remove('active');
+                    });
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!navMenu.contains(event.target) && !mobileMenuToggle.contains(event.target)) {
+                        navMenu.classList.remove('active');
+                        mobileMenuToggle.classList.remove('active');
+                    }
+                });
+            }
+
+            // Mobile editor functionality
+            initializeMobileEditor();
+            
+            // Help section functionality
+            initializeHelpSection();
+            
+            // Initialize image upload functionality
+            initializeImageUpload();
+        });
+
+        function initializeMobileEditor() {
+            const mobileBottomSheet = document.getElementById('mobileBottomSheet');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+            const floatingTools = document.getElementById('floatingTools');
+            const canvasInstructions = document.getElementById('canvasInstructions');
+            
+            if (!mobileBottomSheet || !mobileOverlay) return;
+
+            // Floating tool toggles
+            const toolToggles = document.querySelectorAll('.tool-toggle');
+            const desktopRadios = document.querySelectorAll('input[name="obfuscationTool"]');
+            
+            toolToggles.forEach(toggle => {
+                toggle.addEventListener('click', function() {
+                    const tool = this.dataset.tool;
+                    
+                    // Update mobile UI
+                    toolToggles.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Sync with desktop
+                    const correspondingRadio = document.querySelector(`input[value="${tool}"]`);
+                    if (correspondingRadio) {
+                        correspondingRadio.checked = true;
+                    }
+                    
+                    // Trigger tool change event if exists
+                    if (window.updateSelectedTool) {
+                        window.updateSelectedTool(tool);
+                    }
+                });
+            });
+
+            // Sync desktop radio changes with mobile
+            desktopRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    if (this.checked) {
+                        const tool = this.value;
+                        const correspondingToggle = document.querySelector(`[data-tool="${tool}"]`);
+                        if (correspondingToggle) {
+                            toolToggles.forEach(t => t.classList.remove('active'));
+                            correspondingToggle.classList.add('active');
+                        }
+                    }
+                });
+            });
+
+            // Canvas long press to show options (mobile)
+            const canvas = document.getElementById('canvas');
+            let longPressTimer;
+            let touchStarted = false;
+
+            if (canvas) {
+                canvas.addEventListener('touchstart', function(e) {
+                    touchStarted = true;
+                    longPressTimer = setTimeout(() => {
+                        if (touchStarted) {
+                            showMobileBottomSheet();
+                        }
+                    }, 800); // 800ms long press
+                });
+
+                canvas.addEventListener('touchend', function(e) {
+                    touchStarted = false;
+                    clearTimeout(longPressTimer);
+                });
+
+                canvas.addEventListener('touchmove', function(e) {
+                    clearTimeout(longPressTimer);
+                });
+
+                // Show instructions on first canvas interaction
+                let hasInteracted = false;
+                canvas.addEventListener('touchstart', function() {
+                    if (!hasInteracted) {
+                        hideCanvasInstructions();
+                        hasInteracted = true;
+                    }
+                });
+            }
+
+            // Bottom sheet functionality
+            function showMobileBottomSheet() {
+                mobileBottomSheet.classList.add('active');
+                mobileOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function hideMobileBottomSheet() {
+                mobileBottomSheet.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            // Show bottom sheet on floating tools long press
+            floatingTools?.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                showMobileBottomSheet();
+            });
+
+            // Hide bottom sheet when clicking overlay
+            mobileOverlay.addEventListener('click', hideMobileBottomSheet);
+
+            // Handle bottom sheet swipe down to close
+            let startY = 0;
+            let currentY = 0;
+            let isDragging = false;
+
+            mobileBottomSheet.addEventListener('touchstart', function(e) {
+                startY = e.touches[0].clientY;
+                isDragging = true;
+            });
+
+            mobileBottomSheet.addEventListener('touchmove', function(e) {
+                if (!isDragging) return;
+                
+                currentY = e.touches[0].clientY;
+                const deltaY = currentY - startY;
+                
+                if (deltaY > 0) {
+                    const translateY = Math.min(deltaY, 200);
+                    mobileBottomSheet.style.transform = `translateY(${translateY}px)`;
+                }
+            });
+
+            mobileBottomSheet.addEventListener('touchend', function(e) {
+                if (!isDragging) return;
+                isDragging = false;
+                
+                const deltaY = currentY - startY;
+                
+                if (deltaY > 100) {
+                    hideMobileBottomSheet();
+                }
+                
+                mobileBottomSheet.style.transform = '';
+            });
+
+            // Sync checkboxes between mobile and desktop
+            const desktopWatermark = document.getElementById('addWatermark');
+            const mobileWatermark = document.getElementById('addWatermarkMobile');
+            
+            if (desktopWatermark && mobileWatermark) {
+                desktopWatermark.addEventListener('change', function() {
+                    mobileWatermark.checked = this.checked;
+                });
+                
+                mobileWatermark.addEventListener('change', function() {
+                    desktopWatermark.checked = this.checked;
+                });
+            }
+
+            // Sync action buttons
+            const desktopClear = document.getElementById('clearObfuscation');
+            const mobileClear = document.getElementById('clearObfuscationMobile');
+            const desktopDownload = document.getElementById('downloadBtn');
+            const mobileDownload = document.getElementById('downloadBtnMobile');
+
+            if (mobileClear && desktopClear) {
+                mobileClear.addEventListener('click', function() {
+                    desktopClear.click();
+                    hideMobileBottomSheet();
+                });
+            }
+
+            if (mobileDownload && desktopDownload) {
+                mobileDownload.addEventListener('click', function() {
+                    desktopDownload.click();
+                    hideMobileBottomSheet();
+                });
+            }
+
+            // Auto-hide instructions after showing editor
+            setTimeout(() => {
+                hideCanvasInstructions();
+            }, 5000);
+        }
+
+        function hideCanvasInstructions() {
+            const instructions = document.getElementById('canvasInstructions');
+            if (instructions) {
+                instructions.style.opacity = '0';
+                instructions.style.visibility = 'hidden';
+                setTimeout(() => {
+                    instructions.style.display = 'none';
+                }, 300);
+            }
+        }
+
+        // Detect mobile device
+        function isMobileDevice() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+                   window.innerWidth <= 768;
+        }
+
+        // Viewport height fix for mobile browsers
+        function setViewportHeight() {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+
+        window.addEventListener('resize', setViewportHeight);
+        setViewportHeight();
+
+        // Prevent zoom on double tap (iOS)
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+
+        // Improved touch handling for canvas
+        document.addEventListener('touchmove', function(e) {
+            if (e.target.id === 'canvas') {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        function initializeHelpSection() {
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            const progressFill = document.getElementById('helpProgress');
+            const currentStepSpan = document.getElementById('currentStep');
+            const totalStepsSpan = document.getElementById('totalSteps');
+            
+            if (!accordionItems.length) return;
+            
+            totalStepsSpan.textContent = accordionItems.length;
+            
+            // Accordion functionality
+            accordionItems.forEach((item, index) => {
+                const header = item.querySelector('.accordion-header');
+                const content = item.querySelector('.accordion-content');
+                const toggleIcon = item.querySelector('.toggle-icon');
+                const status = item.querySelector('.accordion-status');
+                
+                header.addEventListener('click', function() {
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all other items
+                    accordionItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                            const otherHeader = otherItem.querySelector('.accordion-header');
+                            const otherToggleIcon = otherItem.querySelector('.toggle-icon');
+                            otherHeader.setAttribute('aria-expanded', 'false');
+                            otherToggleIcon.textContent = '+';
+                        }
+                    });
+                    
+                    // Toggle current item
+                    if (isActive) {
+                        item.classList.remove('active');
+                        header.setAttribute('aria-expanded', 'false');
+                        toggleIcon.textContent = '+';
+                    } else {
+                        item.classList.add('active');
+                        header.setAttribute('aria-expanded', 'true');
+                        toggleIcon.textContent = '−';
+                        
+                        // Update progress
+                        updateProgress(index + 1);
+                        
+                        // Mark as completed
+                        if (status) {
+                            status.textContent = 'Completado';
+                        }
+                        
+                        // Scroll to item (mobile)
+                        if (window.innerWidth <= 768) {
+                            setTimeout(() => {
+                                item.scrollIntoView({
+                                    behavior: 'smooth',
+                                    block: 'center'
+                                });
+                            }, 150);
+                        }
+                    }
+                });
+                
+                // Keyboard accessibility
+                header.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        header.click();
+                    }
+                });
+            });
+            
+            // Desktop step hover effects
+            const desktopSteps = document.querySelectorAll('.help-steps-desktop .help-step');
+            desktopSteps.forEach((step, index) => {
+                step.addEventListener('mouseenter', function() {
+                    updateProgress(index + 1);
+                });
+                
+                step.addEventListener('click', function() {
+                    const status = step.querySelector('.accordion-status');
+                    if (status) {
+                        status.textContent = 'Completado';
+                    }
+                });
+            });
+            
+            function updateProgress(step) {
+                const progressPercentage = (step / accordionItems.length) * 100;
+                if (progressFill) {
+                    progressFill.style.width = `${progressPercentage}%`;
+                }
+                if (currentStepSpan) {
+                    currentStepSpan.textContent = step;
+                }
+            }
+            
+            // Auto-expand first item on mobile
+            if (window.innerWidth <= 768 && accordionItems.length > 0) {
+                const firstItem = accordionItems[0];
+                firstItem.classList.add('active');
+                const firstHeader = firstItem.querySelector('.accordion-header');
+                const firstToggleIcon = firstItem.querySelector('.toggle-icon');
+                firstHeader.setAttribute('aria-expanded', 'true');
+                firstToggleIcon.textContent = '−';
+                updateProgress(1);
+            }
+            
+            // Reset progress on window resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    // Desktop view - reset to step 1
+                    updateProgress(1);
+                }
+            });
+            
+            // Animate progress bar on load
+            setTimeout(() => {
+                updateProgress(1);
+            }, 500);
+        }
+
+        function initializeImageUpload() {
+            const imageInput = document.getElementById('imageInput');
+            const uploadArea = document.getElementById('uploadArea');
+            const editorSection = document.getElementById('editorSection');
+            const uploadSection = document.getElementById('uploadSection');
+            
+            if (!imageInput) return;
+            
+            // Override the existing image upload handler to also show the editor section
+            imageInput.addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    // Show editor section when image is uploaded
+                    if (editorSection) {
+                        editorSection.style.display = 'block';
+                        // Smooth scroll to editor section
+                        setTimeout(() => {
+                            editorSection.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }, 100);
+                    }
+                    
+                    // Hide upload section on mobile for better UX
+                    if (window.innerWidth <= 768 && uploadSection) {
+                        uploadSection.style.display = 'none';
+                    }
+                }
+            });
+            
+            // Drag and drop functionality
+            if (uploadArea) {
+                uploadArea.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    uploadArea.classList.add('drag-over');
+                });
+                
+                uploadArea.addEventListener('dragleave', function(e) {
+                    e.preventDefault();
+                    uploadArea.classList.remove('drag-over');
+                });
+                
+                uploadArea.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    uploadArea.classList.remove('drag-over');
+                    
+                    const files = e.dataTransfer.files;
+                    if (files.length > 0) {
+                        imageInput.files = files;
+                        // Trigger change event
+                        const event = new Event('change', { bubbles: true });
+                        imageInput.dispatchEvent(event);
+                    }
+                });
+            }
+            
+            // Reset functionality
+            const resetBtn = document.getElementById('resetBtn');
+            if (resetBtn) {
+                resetBtn.addEventListener('click', function() {
+                    // Hide editor section
+                    if (editorSection) {
+                        editorSection.style.display = 'none';
+                    }
+                    
+                    // Show upload section
+                    if (uploadSection) {
+                        uploadSection.style.display = 'block';
+                        // Scroll back to upload section
+                        uploadSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                    
+                    // Clear file input
+                    if (imageInput) {
+                        imageInput.value = '';
+                    }
+                });
+            }
+        }
+    </script>
 </body>
 </html>
