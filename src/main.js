@@ -4,15 +4,29 @@ import { PassportObfuscator } from './PassportObfuscator.js';
 // TODO: Optimize perfomance
 document.addEventListener('DOMContentLoaded', () => {
     try {
-        const app = new PassportObfuscator();
+        // Create PassportObfuscator if canvas exists
+        const canvas = document.getElementById('canvas');
+        let app = null;
         
-        // Expose updateSelectedTool method globally for UI synchronization
+        if (canvas) {
+            app = new PassportObfuscator();
+            console.log('PassportObfuscator initialized successfully');
+        } else {
+            console.log('No canvas found, skipping PassportObfuscator initialization');
+        }
+        
+        window.app = app;
+        
         window.updateSelectedTool = (toolType) => {
-            app.updateSelectedTool(toolType);
+            if (app) {
+                app.updateSelectedTool(toolType);
+            }
         };
     } catch (error) {
         // TODO: better error handling here
         console.log('Something went wrong: ' + error.message);
         console.error(error);
+
+        window.app = null;
     }
 }); 

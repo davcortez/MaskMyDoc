@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor de Documento - MaskMyDoc</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🛡️</span>
+                <span class="logo-text">MaskMyDoc</span>
+            </div>
+            <!-- Responsive navbar -->
+            <nav class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="upload.html" class="nav-link">Subir</a>
+                <a href="editor.html" class="nav-link active">Editor</a>
+                <a href="upload.html#security" class="nav-link">Seguridad</a>
+            </nav>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Editor Section -->
+        <section class="editor-section" id="editorSection">
+            <div class="editor-container">
+                <div class="editor-header">
+                    <div class="editor-title-group">
+                        <h1>Editor de Documento</h1>
+                        <p class="editor-subtitle">Selecciona las áreas a ocultar</p>
+                    </div>
+                    <div class="editor-actions">
+                        <button class="btn-secondary btn-compact" onclick="window.location.href='upload.html'">
+                            <span class="btn-icon">📄</span>
+                            <span class="btn-text">Cambiar Archivo</span>
+                        </button>
+                        <button class="btn-secondary btn-compact" id="resetBtn">
+                            <span class="btn-icon">🔄</span>
+                            <span class="btn-text">Reiniciar</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="editor-content">
+                    <div class="canvas-container" id="canvasSection">
+                        <canvas id="canvas"></canvas>
+                        <div class="canvas-overlay" id="canvasOverlay"></div>
+                        
+                        <!-- Floating Tool Selector for Mobile -->
+                        <div class="floating-tools" id="floatingTools">
+                            <button class="tool-toggle active" data-tool="pixelate" aria-label="Herramienta de pixelado">
+                                <span class="tool-icon">🔲</span>
+                                <span class="tool-label">Pixelar</span>
+                            </button>
+                            <button class="tool-toggle" data-tool="blackout" aria-label="Herramienta de tachado">
+                                <span class="tool-icon">⬛</span>
+                                <span class="tool-label">Tachar</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Canvas Instructions -->
+                        <div class="canvas-instructions" id="canvasInstructions">
+                            <div class="instruction-content">
+                                <span class="instruction-icon">👆</span>
+                                <p>Toca y arrastra para ocultar información</p>
+                            </div>
+                        </div>
+                        
+                        <!-- No Image Message -->
+                        <div class="no-image-message" id="noImageMessage" style="display: none;">
+                            <div class="no-image-content">
+                                <span class="no-image-icon">📄</span>
+                                <h3>No hay imagen cargada</h3>
+                                <p>Por favor, sube un documento primero</p>
+                                <button class="btn-primary" onclick="window.location.href='upload.html'">
+                                    <span class="btn-icon">📁</span>
+                                    Subir Documento
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Desktop Sidebar -->
+                    <div class="editor-sidebar desktop-only">
+                        <div class="tool-panel">
+                            <h3>Herramientas</h3>
+                            <div class="tool-options">
+                                <label class="tool-option">
+                                    <input type="radio" name="obfuscationTool" value="pixelate" checked>
+                                    <div class="tool-card">
+                                        <div class="tool-icon">🔲</div>
+                                        <div class="tool-info">
+                                            <h4>Pixelar</h4>
+                                            <p>Aplica efecto de pixeles</p>
+                                        </div>
+                                    </div>
+                                </label>
+                                
+                                <label class="tool-option">
+                                    <input type="radio" name="obfuscationTool" value="blackout">
+                                    <div class="tool-card">
+                                        <div class="tool-icon">⬛</div>
+                                        <div class="tool-info">
+                                            <h4>Tachar</h4>
+                                            <p>Bloquea completamente</p>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="options-panel">
+                            <h3>Opciones</h3>
+                            <label class="option-item">
+                                <input type="checkbox" id="addWatermark">
+                                <div class="checkbox-custom"></div>
+                                <div class="option-text">
+                                    <h4>Marca de Agua</h4>
+                                    <p>Agregar "datosecuatorianos"</p>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <div class="action-panel">
+                            <button class="btn-danger" id="clearObfuscation">
+                                <span class="btn-icon">🗑️</span>
+                                <span class="btn-text">Limpiar Todo</span>
+                            </button>
+                            <button class="btn-primary" id="downloadBtn">
+                                <span class="btn-icon">💾</span>
+                                <span class="btn-text">Descargar</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mobile Bottom Sheet -->
+                <div class="mobile-bottom-sheet" id="mobileBottomSheet">
+                    <div class="bottom-sheet-header">
+                        <div class="bottom-sheet-handle"></div>
+                        <h3>Opciones</h3>
+                    </div>
+                    
+                    <div class="bottom-sheet-content">
+                        <div class="mobile-options">
+                            <label class="mobile-option-item">
+                                <input type="checkbox" id="addWatermarkMobile">
+                                <div class="mobile-checkbox"></div>
+                                <span>Agregar marca de agua</span>
+                            </label>
+                        </div>
+                        
+                        <div class="mobile-actions">
+                            <button class="btn-danger btn-mobile" id="clearObfuscationMobile">
+                                <span class="btn-icon">🗑️</span>
+                                <span>Limpiar</span>
+                            </button>
+                            <button class="btn-primary btn-mobile" id="downloadBtnMobile">
+                                <span class="btn-icon">💾</span>
+                                <span>Descargar</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mobile Overlay -->
+                <div class="mobile-overlay" id="mobileOverlay"></div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="src/main.js"></script>
+    <script>
+        // Mobile menu toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (mobileMenuToggle && navMenu) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                    mobileMenuToggle.classList.toggle('active');
+                });
+
+                // Close menu when clicking on nav links
+                const navLinks = navMenu.querySelectorAll('.nav-link');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        navMenu.classList.remove('active');
+                        mobileMenuToggle.classList.remove('active');
+                    });
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!navMenu.contains(event.target) && !mobileMenuToggle.contains(event.target)) {
+                        navMenu.classList.remove('active');
+                        mobileMenuToggle.classList.remove('active');
+                    }
+                });
+            }
+
+            // Mobile editor functionality
+            initializeMobileEditor();
+            
+            // Initialize editor with uploaded image
+            initializeEditor();
+        });
+
+        function initializeEditor() {
+            // Check if there's an uploaded image in sessionStorage
+            const imageData = sessionStorage.getItem('uploadedImageData');
+            const imageName = sessionStorage.getItem('uploadedImageName');
+            
+            if (!imageData) {
+                // No image uploaded, show message
+                document.getElementById('noImageMessage').style.display = 'flex';
+                document.getElementById('canvas').style.display = 'none';
+                return;
+            }
+            
+            // Create image element and load the uploaded data
+            const img = new Image();
+            img.onload = function() {
+                // Simulate file upload event for the PassportObfuscator
+                const mockEvent = {
+                    target: {
+                        files: [{
+                            name: imageName,
+                            type: 'image/*'
+                        }]
+                    }
+                };
+                
+                // The PassportObfuscator should handle this, but we need to ensure it's properly initialized
+                if (window.app && window.app.handleImageUpload) {
+                    // Create a proper File-like object
+                    fetch(imageData)
+                        .then(res => res.blob())
+                        .then(blob => {
+                            const file = new File([blob], imageName, { type: blob.type });
+                            const fileEvent = {
+                                target: {
+                                    files: [file]
+                                }
+                            };
+                            window.app.handleImageUpload(fileEvent);
+                        });
+                } else {
+                    // Fallback: create canvas and draw image directly
+                    const canvas = document.getElementById('canvas');
+                    const ctx = canvas.getContext('2d');
+                    
+                    // Set canvas size to image size (with max limits)
+                    const maxWidth = 800;
+                    const maxHeight = 600;
+                    let { width, height } = img;
+                    
+                    if (width > maxWidth) {
+                        height = (height * maxWidth) / width;
+                        width = maxWidth;
+                    }
+                    if (height > maxHeight) {
+                        width = (width * maxHeight) / height;
+                        height = maxHeight;
+                    }
+                    
+                    canvas.width = width;
+                    canvas.height = height;
+                    ctx.drawImage(img, 0, 0, width, height);
+                    
+                    // Apply grayscale conversion (same logic as CanvasManager.setupCanvas)
+                    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                    const data = imageData.data;
+                    
+                    for (let i = 0; i < data.length; i += 4) {
+                        const gray = Math.round(0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2]);
+                        data[i] = data[i + 1] = data[i + 2] = gray;
+                    }
+                    
+                    ctx.putImageData(imageData, 0, 0);
+                    console.log('Editor fallback: Image converted to grayscale');
+                    
+                    // Show canvas and hide no-image message
+                    canvas.style.display = 'block';
+                    document.getElementById('noImageMessage').style.display = 'none';
+                }
+            };
+            img.src = imageData;
+        }
+
+        function initializeMobileEditor() {
+            const mobileBottomSheet = document.getElementById('mobileBottomSheet');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+            const floatingTools = document.getElementById('floatingTools');
+            const canvasInstructions = document.getElementById('canvasInstructions');
+            
+            if (!mobileBottomSheet || !mobileOverlay) return;
+
+            // Floating tool toggles
+            const toolToggles = document.querySelectorAll('.tool-toggle');
+            const desktopRadios = document.querySelectorAll('input[name="obfuscationTool"]');
+            
+            toolToggles.forEach(toggle => {
+                toggle.addEventListener('click', function() {
+                    const tool = this.dataset.tool;
+                    
+                    // Update mobile UI
+                    toolToggles.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Sync with desktop
+                    const correspondingRadio = document.querySelector(`input[value="${tool}"]`);
+                    if (correspondingRadio) {
+                        correspondingRadio.checked = true;
+                    }
+                    
+                    // Trigger tool change event if exists
+                    if (window.updateSelectedTool) {
+                        window.updateSelectedTool(tool);
+                    }
+                });
+            });
+
+            // Sync desktop radio changes with mobile
+            desktopRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    if (this.checked) {
+                        const tool = this.value;
+                        const correspondingToggle = document.querySelector(`[data-tool="${tool}"]`);
+                        if (correspondingToggle) {
+                            toolToggles.forEach(t => t.classList.remove('active'));
+                            correspondingToggle.classList.add('active');
+                        }
+                    }
+                });
+            });
+
+            // Canvas long press to show options (mobile)
+            const canvas = document.getElementById('canvas');
+            let longPressTimer;
+            let touchStarted = false;
+
+            if (canvas) {
+                canvas.addEventListener('touchstart', function(e) {
+                    touchStarted = true;
+                    longPressTimer = setTimeout(() => {
+                        if (touchStarted) {
+                            showMobileBottomSheet();
+                        }
+                    }, 800); // 800ms long press
+                });
+
+                canvas.addEventListener('touchend', function(e) {
+                    touchStarted = false;
+                    clearTimeout(longPressTimer);
+                });
+
+                canvas.addEventListener('touchmove', function(e) {
+                    clearTimeout(longPressTimer);
+                });
+
+                // Show instructions on first canvas interaction
+                let hasInteracted = false;
+                canvas.addEventListener('touchstart', function() {
+                    if (!hasInteracted) {
+                        hideCanvasInstructions();
+                        hasInteracted = true;
+                    }
+                });
+            }
+
+            // Bottom sheet functionality
+            function showMobileBottomSheet() {
+                mobileBottomSheet.classList.add('active');
+                mobileOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function hideMobileBottomSheet() {
+                mobileBottomSheet.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            // Show bottom sheet on floating tools long press
+            floatingTools?.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                showMobileBottomSheet();
+            });
+
+            // Hide bottom sheet when clicking overlay
+            mobileOverlay.addEventListener('click', hideMobileBottomSheet);
+
+            // Handle bottom sheet swipe down to close
+            let startY = 0;
+            let currentY = 0;
+            let isDragging = false;
+
+            mobileBottomSheet.addEventListener('touchstart', function(e) {
+                startY = e.touches[0].clientY;
+                isDragging = true;
+            });
+
+            mobileBottomSheet.addEventListener('touchmove', function(e) {
+                if (!isDragging) return;
+                
+                currentY = e.touches[0].clientY;
+                const deltaY = currentY - startY;
+                
+                if (deltaY > 0) {
+                    const translateY = Math.min(deltaY, 200);
+                    mobileBottomSheet.style.transform = `translateY(${translateY}px)`;
+                }
+            });
+
+            mobileBottomSheet.addEventListener('touchend', function(e) {
+                if (!isDragging) return;
+                isDragging = false;
+                
+                const deltaY = currentY - startY;
+                
+                if (deltaY > 100) {
+                    hideMobileBottomSheet();
+                }
+                
+                mobileBottomSheet.style.transform = '';
+            });
+
+            // Sync checkboxes between mobile and desktop
+            const desktopWatermark = document.getElementById('addWatermark');
+            const mobileWatermark = document.getElementById('addWatermarkMobile');
+            
+            if (desktopWatermark && mobileWatermark) {
+                desktopWatermark.addEventListener('change', function() {
+                    mobileWatermark.checked = this.checked;
+                });
+                
+                mobileWatermark.addEventListener('change', function() {
+                    desktopWatermark.checked = this.checked;
+                });
+            }
+
+            // Sync action buttons
+            const desktopClear = document.getElementById('clearObfuscation');
+            const mobileClear = document.getElementById('clearObfuscationMobile');
+            const desktopDownload = document.getElementById('downloadBtn');
+            const mobileDownload = document.getElementById('downloadBtnMobile');
+
+            if (mobileClear && desktopClear) {
+                mobileClear.addEventListener('click', function() {
+                    desktopClear.click();
+                    hideMobileBottomSheet();
+                });
+            }
+
+            if (mobileDownload && desktopDownload) {
+                mobileDownload.addEventListener('click', function() {
+                    desktopDownload.click();
+                    hideMobileBottomSheet();
+                });
+            }
+
+            // Auto-hide instructions after showing editor
+            setTimeout(() => {
+                hideCanvasInstructions();
+            }, 5000);
+        }
+
+        function hideCanvasInstructions() {
+            const instructions = document.getElementById('canvasInstructions');
+            if (instructions) {
+                instructions.style.opacity = '0';
+                instructions.style.visibility = 'hidden';
+                setTimeout(() => {
+                    instructions.style.display = 'none';
+                }, 300);
+            }
+        }
+
+        // Detect mobile device
+        function isMobileDevice() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+                   window.innerWidth <= 768;
+        }
+
+        // Viewport height fix for mobile browsers
+        function setViewportHeight() {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+
+        window.addEventListener('resize', setViewportHeight);
+        setViewportHeight();
+
+        // Prevent zoom on double tap (iOS)
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+
+        // Improved touch handling for canvas
+        document.addEventListener('touchmove', function(e) {
+            if (e.target.id === 'canvas') {
+                e.preventDefault();
+            }
+        }, { passive: false });
+    </script>
+</body>
+</html> 

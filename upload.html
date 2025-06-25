@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir Documento - MaskMyDoc</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🛡️</span>
+                <span class="logo-text">MaskMyDoc</span>
+            </div>
+            <!-- Responsive navbar -->
+            <nav class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Inicio</a>
+                <a href="upload.html" class="nav-link active">Subir</a>
+                <a href="editor.html" class="nav-link">Editor</a>
+                <a href="#security" class="nav-link">Seguridad</a>
+            </nav>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <section class="upload-section" id="uploadSection">
+            <div class="upload-container">
+                <div class="upload-header">
+                    <h1>Sube tu Documento</h1>
+                    <p>Selecciona el archivo que deseas proteger</p>
+                </div>
+                
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">📄</div>
+                    <h3>Selecciona tu documento</h3>
+                    <p>Arrastra y suelta tu imagen aquí o haz clic para seleccionar</p>
+                    <input type="file" 
+                           id="imageInput" 
+                           accept=".jpg,.jpeg,.png,.webp,.gif,image/jpeg,image/png,image/webp,image/gif" 
+                           class="file-input"
+                           title="Seleccione archivos JPG, PNG, WebP o GIF (máximo 50MB)">
+                    <button class="upload-btn" onclick="document.getElementById('imageInput').click()">
+                        <span class="btn-icon">📁</span>
+                        Seleccionar Archivo
+                    </button>
+                </div>
+                
+                <div class="upload-info">
+                    <div class="supported-formats">
+                        <h4>Formatos Soportados</h4>
+                        <div class="format-list">
+                            <span class="format-item">JPG</span>
+                            <span class="format-item">PNG</span>
+                            <span class="format-item">WebP</span>
+                            <span class="format-item">GIF</span>
+                        </div>
+                    </div>
+                    <div class="file-limits">
+                        <p><strong>Tamaño máximo:</strong> 50MB</p>
+                        <p><strong>Resolución:</strong> Ilimitada</p>
+                    </div>
+                </div>
+                
+                <div class="upload-actions">
+                    <button class="btn-secondary" onclick="window.location.href='index.html'">
+                        <span class="btn-icon">⬅️</span>
+                        Volver al Inicio
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="security-section" id="security">
+            <div class="security-container">
+                <div class="security-header">
+                    <h2>🔐 Tu Privacidad es Nuestra Prioridad</h2>
+                    <p>Conoce cómo protegemos tu información</p>
+                </div>
+                
+                <div class="security-grid">
+                    <div class="security-card">
+                        <div class="security-icon">🖥️</div>
+                        <h3>Procesamiento Local</h3>
+                        <p>Todas las imágenes se procesan directamente en tu navegador. Nunca se envían a servidores externos.</p>
+                    </div>
+                    
+                    <div class="security-card">
+                        <div class="security-icon">🚫</div>
+                        <h3>Sin Almacenamiento</h3>
+                        <p>No guardamos ni almacenamos tus documentos. Todo se elimina automáticamente al cerrar la página.</p>
+                    </div>
+                    
+                    <div class="security-card">
+                        <div class="security-icon">🔍</div>
+                        <h3>Código Abierto</h3>
+                        <p>Puedes revisar el código fuente para verificar que no hay funciones ocultas o maliciosas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="src/main.js"></script>
+    <script>
+        // Mobile menu toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (mobileMenuToggle && navMenu) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                    mobileMenuToggle.classList.toggle('active');
+                });
+
+
+                const navLinks = navMenu.querySelectorAll('.nav-link');
+                navLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        navMenu.classList.remove('active');
+                        mobileMenuToggle.classList.remove('active');
+                    });
+                });
+
+
+                document.addEventListener('click', function(event) {
+                    if (!navMenu.contains(event.target) && !mobileMenuToggle.contains(event.target)) {
+                        navMenu.classList.remove('active');
+                        mobileMenuToggle.classList.remove('active');
+                    }
+                });
+            }
+            
+
+            initializeImageUpload();
+        });
+
+        function initializeImageUpload() {
+            const imageInput = document.getElementById('imageInput');
+            const uploadArea = document.getElementById('uploadArea');
+            
+            if (!imageInput) return;
+            
+
+            imageInput.addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (file) {
+
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        sessionStorage.setItem('uploadedImageData', e.target.result);
+                        sessionStorage.setItem('uploadedImageName', file.name);
+
+                        window.location.href = 'editor.html';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+
+            if (uploadArea) {
+                uploadArea.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    uploadArea.classList.add('drag-over');
+                });
+                
+                uploadArea.addEventListener('dragleave', function(e) {
+                    e.preventDefault();
+                    uploadArea.classList.remove('drag-over');
+                });
+                
+                uploadArea.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    uploadArea.classList.remove('drag-over');
+                    
+                    const files = e.dataTransfer.files;
+                    if (files.length > 0) {
+                        imageInput.files = files;
+
+                        const event = new Event('change', { bubbles: true });
+                        imageInput.dispatchEvent(event);
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html> 

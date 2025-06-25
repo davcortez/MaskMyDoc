@@ -385,6 +385,68 @@ body {
     margin: var(--space-1) 0;
 }
 
+/* Upload Header */
+.upload-header {
+    text-align: center;
+    margin-bottom: var(--space-8);
+}
+
+.upload-header h1 {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: var(--space-3);
+}
+
+.upload-header p {
+    font-size: var(--font-size-lg);
+    color: var(--gray-600);
+}
+
+.upload-actions {
+    margin-top: var(--space-6);
+    text-align: center;
+}
+
+/* No Image Message */
+.no-image-message {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gray-50);
+    border-radius: var(--radius-lg);
+    border: 2px dashed var(--gray-300);
+}
+
+.no-image-content {
+    text-align: center;
+    padding: var(--space-8);
+    max-width: 400px;
+}
+
+.no-image-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-4);
+    opacity: 0.5;
+}
+
+.no-image-content h3 {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--gray-700);
+    margin-bottom: var(--space-2);
+}
+
+.no-image-content p {
+    color: var(--gray-500);
+    margin-bottom: var(--space-6);
+}
+
 /* Editor Section */
 .editor-section {
     background: var(--white);
